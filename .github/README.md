@@ -1,3 +1,6 @@
+content://com.sec.android.app.sbrowser.FileProvider/images/share-images/copyImage.jpg<img width="64" height="64" alt="image" src="https://github.com/user-attachments/assets/70f231fd-e60d-4465-9fb8-4f8a66b5db25" />
+
+
 <h1><img alt="Baileys logo" src="https://raw.githubusercontent.com/WhiskeySockets/Baileys/refs/heads/master/Media/logo.png" height="75"/></h1>
 
 
