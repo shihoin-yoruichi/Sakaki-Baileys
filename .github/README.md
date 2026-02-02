@@ -1,3 +1,6 @@
+<img width="64" height="64" alt="image" src="https://github.com/user-attachments/assets/8e99f6cc-ef3f-4fa1-a5bf-61193d992780" />
+
+
 <h1><img alt="Baileys logo" src="https://raw.githubusercontent.com/WhiskeySockets/Baileys/refs/heads/master/Media/logo.png" height="75"/></h1>
 
 
