@@ -1,3 +1,6 @@
+
+import fs from 'fs'
+import path from 'path' 
 import { Boom } from '@hapi/boom'
 import NodeCache from '@cacheable/node-cache'
 import readline from 'readline'
@@ -36,8 +39,15 @@ const onDemandMap = new Map<string, string>()
 const rl = readline.createInterface({ input: process.stdin, output: process.stdout })
 const question = (text: string) => new Promise<string>((resolve) => rl.question(text, resolve))
 
+/* Load Commands */
+const client.commands = new Map <any, string> ();
+const commandsPath = path.join(__dirname, 'commands');
+const commandsFiles = fs.readdirSync(foldersPath);
+
 // start a connection
 const startSock = async() => {
+try {
+
 	const { state, saveCreds } = await useMultiFileAuthState('baileys_auth_info')
 	// NOTE: For unit testing purposes only
 	if (process.env.ADV_SECRET_KEY) {
@@ -230,6 +240,42 @@ const startSock = async() => {
 		// only if store is present
 		return proto.Message.create({ conversation: 'test' })
 	}
-}
 
-startSock()
+   } catch (error)
+   {
+		 console.error(error);
+	 }	
+} startSock();
+
+
+
+async function loadCommands() 
+{
+	try {
+        for (const folder of commandsFolders) 
+	      {
+          const commandsPath = path.join(foldersPath, folder);
+		      const commandsFiles = fs.readdirSync(commandsPath).filter((file) => file.endsWith('.ts'));
+		
+	      	for (const file of commandFiles)
+		      {
+            const filePath = path.join(commandsPath, file);
+			      const command = require(filePath);
+
+			      if ( 'data' in command && 'execute' in command )
+            {
+              client.commands.set( command.data.name, command );
+			      } 
+			
+		        else 
+			      {
+              console.log( `[WARNING] The command at &(filePath) is missing a required "data" or "execute" property.` );			
+						}
+		      }
+	      }
+	    } catch () 
+			  {
+					console.error(error);
+					sock.sendMessage();
+				}
+} 
